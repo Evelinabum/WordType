@@ -1,22 +1,22 @@
 const typingText = document.querySelector(".typing-text p"),
-  inpField = document.querySelector(".wrapper .input-field"),
-  tryAgainBtn = document.querySelector(".content button"),
-  timeTag = document.querySelector(".time span b"),
-  mistakeTag = document.querySelector(".mistake span"),
-  wpmTag = document.querySelector(".wpm span"),
-  cpmTag = document.querySelector(".cpm span");
+inpField = document.querySelector(".wrapper .input-field"),
+tryAgainBtn = document.querySelector(".content button"),
+timeTag = document.querySelector(".time span b"),
+mistakeTag = document.querySelector(".mistake span"),
+wpmTag = document.querySelector(".wpm span"),
+cpmTag = document.querySelector(".cpm span");
 
 let timer,
   maxTime = 60,
-  timeleft = maxTime,
+  timeLeft = maxTime,
   charIndex = (mistakes = isTyping = 0);
 
 function loadParagraph() {
-  const ranIndex = Math.floor(Math.random() * paragraphs.length);
-  typingText.innerHTML = "";
-  paragraphs[ranIndex].split("").forEach((char) => {
-    let span = `<span>${char}</span>`;
-    typingText.innerHTML += span;
+const ranIndex = Math.floor(Math.random() * paragraphs.length);
+typingText.innerHTML = "";
+paragraphs[ranIndex].split("").forEach((char) => {
+   let span = `<span>${char}</span>`;
+   typingText.innerHTML += span;
   });
 
   typingText.querySelectorAll("span")[0].classList.add("active");
@@ -32,7 +32,7 @@ function initTyping() {
     if (!isTyping) {
       timer = setInterval(initTimer, 1000);
       isTyping = true;
-    }
+}
     if (typedChar == null) {
       if (charIndex > 0) {
         charIndex--;
@@ -40,16 +40,16 @@ function initTyping() {
           mistakes--;
         }
         character[charIndex].classList.remove("correct", "incorrect");
-      }
-    } else {
+   }
+} else {
       if (character[charIndex].innerText === typedChar) {
         character[charIndex].classList.add("correct");
-      } else {
+     } else {
         mistakes++;
         character[charIndex].classList.add("incorrect");
-      }
-      charIndex++;
     }
+      charIndex++;
+}
     character.forEach((span) => span.classList.remove("active"));
     character[charIndex].classList.add("active");
 
